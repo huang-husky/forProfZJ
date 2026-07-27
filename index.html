@@ -7,6 +7,14 @@
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600&display=swap" rel="stylesheet">
 
   <style>
+    /* 字魂50号-白鸽天行体，已按信中用字做子集（12.66MB -> 458KB）。
+       改动信件内容后，在 letter contexts/forProfZJ 里重跑 python subset-font.py 即可。 */
+    @font-face {
+      font-family: 'BaigeTianxing';
+      src: url('text.subset.woff2') format('woff2');
+      font-display: swap;
+    }
+
     :root {
       --ink: #262b33;
       --ink-soft: #5b6472;
@@ -21,7 +29,7 @@
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
-      font-family: 'Noto Serif SC', 'Songti SC', 'SimSun', serif;
+      font-family: 'BaigeTianxing', 'Noto Serif SC', 'Songti SC', 'SimSun', serif;
       color: var(--ink);
       line-height: 2.15;
       min-height: 100vh;
@@ -188,6 +196,8 @@
 
     .header { text-align: center; margin-bottom: 48px; }
     .header h1 {
+      /* 标题不用白鸽天行体：该字体缺“劼”字，混排会一半手写一半宋体 */
+      font-family: 'Noto Serif SC', 'Songti SC', 'SimSun', serif;
       font-size: 2.05rem;
       font-weight: 500;
       letter-spacing: 0.42em;
