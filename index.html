@@ -7,10 +7,11 @@
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600&display=swap" rel="stylesheet">
 
   <style>
-    /* 字魂50号-白鸽天行体，已按信中用字做子集（12.66MB -> 458KB）。
-       改动信件内容后，在 letter contexts/forProfZJ 里重跑 python subset-font.py 即可。 */
+    /* 正文字体，已按信中用字做子集（源文件 text.ttf -> text.subset.woff2）。
+       换字体或改信件内容后，在 letter contexts/forProfZJ 里重跑 python subset-font.py 即可，
+       这里的字族名是中性的，无需跟着改。 */
     @font-face {
-      font-family: 'BaigeTianxing';
+      font-family: 'LetterFont';
       src: url('text.subset.woff2') format('woff2');
       font-display: swap;
     }
@@ -29,7 +30,7 @@
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
-      font-family: 'BaigeTianxing', 'Noto Serif SC', 'Songti SC', 'SimSun', serif;
+      font-family: 'LetterFont', 'Noto Serif SC', 'Songti SC', 'SimSun', serif;
       color: var(--ink);
       line-height: 2.15;
       min-height: 100vh;
@@ -93,13 +94,17 @@
       70% { border-color: #b4553f; transform: translateX(3px); }
     }
 
+    /* 启封页的颜文字：不用正文字体（子集里没有这些符号），
+       指定一套对假名/符号支持好的系统字体，各平台渲染才一致 */
     .gate h2 {
-      font-size: 1.55rem;
-      font-weight: 500;
-      letter-spacing: 0.3em;
-      text-indent: 0.3em;
-      color: var(--ink);
-      margin-bottom: 12px;
+      font-family: 'Segoe UI Symbol', 'Yu Gothic', 'Meiryo', 'MS PGothic',
+                   'Hiragino Kaku Gothic ProN', 'Noto Sans CJK JP', sans-serif;
+      font-size: 1.7rem;
+      font-weight: 400;
+      letter-spacing: normal;
+      text-indent: 0;
+      color: var(--ink-soft);
+      margin-bottom: 14px;
     }
     .gate .sub {
       font-family: var(--mono);
@@ -196,7 +201,7 @@
 
     .header { text-align: center; margin-bottom: 48px; }
     .header h1 {
-      /* 标题不用白鸽天行体：该字体缺“劼”字，混排会一半手写一半宋体 */
+      /* 标题不用正文字体：手写类中文字体普遍缺“劼”字，混排会一半手写一半宋体 */
       font-family: 'Noto Serif SC', 'Songti SC', 'SimSun', serif;
       font-size: 2.05rem;
       font-weight: 500;
@@ -394,7 +399,7 @@
 <!-- 启封页 -->
 <div class="gate" id="gate">
   <div class="frames" id="frames"></div>
-  <h2>这里有一封信</h2>
+  <h2>( ´ ▽ ` )ﾉ</h2>
   <p class="sub">awaiting key</p>
   <input type="password" id="pwInput" placeholder="请输入访问密码" autocomplete="off">
   <button id="unlockBtn">验 证</button>
